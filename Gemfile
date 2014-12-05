@@ -1,16 +1,14 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.1.8'
 
 gem 'rails-api'
 
 gem 'spring', :group => :development
 
-
 gem 'pg'
 
-
+gem 'rails_12factor', group: :production
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -26,3 +24,5 @@ gem 'pg'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+ruby '2.1.4'

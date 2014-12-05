@@ -1,0 +1,11 @@
+AllCops:
+  Exclude:
+      - 'bin/**/*'
+      - 'db/**/*'
+      - 'config/**/*'
+      - 'script/**/*'
+      - 'Rakefile'
+      - 'Guardfile'
+
+Documentation:
+  Enabled: false

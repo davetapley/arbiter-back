@@ -4,7 +4,10 @@ gem 'rails', '4.1.8'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
+group :development do
+  gem 'guard-rubocop'
+  gem 'spring'
+end
 
 gem 'pg'
 

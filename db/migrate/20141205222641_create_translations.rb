@@ -4,8 +4,7 @@ class CreateTranslations < ActiveRecord::Migration
 
       t.string :token, uniq: true, null: false
       t.integer :priority, null: false
-      t.string :rule_type, null: false
-      t.json :rule_config
+      t.json :rule, null: false
       t.string :target, null: false
 
       t.timestamps

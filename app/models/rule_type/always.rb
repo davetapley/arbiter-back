@@ -1,7 +1,6 @@
 module RuleType
   class Always
-    def self.from_config(_config)
-      new
+    def initialize(_config)
     end
 
     def active?

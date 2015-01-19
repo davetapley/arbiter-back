@@ -17,11 +17,10 @@ ActiveRecord::Schema.define(version: 20141205222641) do
   enable_extension "plpgsql"
 
   create_table "translations", id: false, force: true do |t|
-    t.string   "token",       null: false
-    t.integer  "priority",    null: false
-    t.string   "rule_type"
-    t.json     "rule_config"
-    t.string   "target"
+    t.string   "token",      null: false
+    t.integer  "priority",   null: false
+    t.json     "rule",       null: false
+    t.string   "target",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,13 @@
 class TranslationSerializer < ActiveModel::Serializer
-  attributes :token, :priority, :rule_type, :rule_config, :target, :active
+  attributes :priority, :rule, :target, :active
+
+  def rule
+    object.rule_config.merge({ :$type => rule_type })
+  end
+
+  def rule_type
+    "#{ object.rule_type }Rule"
+  end
 
   def active
     object.rule.active?

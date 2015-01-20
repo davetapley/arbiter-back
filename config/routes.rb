@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tokens, only: [:index, :show]
+  resources :tokens, only: [:index, :show, :update]
 
   resources :translations, only: [] do
     member do

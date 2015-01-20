@@ -8,6 +8,7 @@ gem 'active_model_serializers', '~> 0.8.0'
 
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'byebug'
   gem 'guard-rubocop'
   gem 'spring'

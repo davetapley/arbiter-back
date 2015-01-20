@@ -5,12 +5,12 @@ FactoryGirl.define do
     target 'www.google.com'
 
     trait :always do
-      rule({ type: 'Always' })
+      rule({ :$type => 'Always' })
     end
 
     trait :period do
       rule do
-        { type: 'Period',
+        { :$type => 'Period',
           first: 1.hour.from_now.iso8601,
           last: 2.hours.from_now.iso8601 }
       end

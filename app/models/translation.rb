@@ -15,11 +15,11 @@ class Translation < ActiveRecord::Base
   end
 
   def rule_type
-    rule_json['type']
+    rule_json['$type']
   end
 
   def rule_config
-    rule_json.except 'type'
+    rule_json.except '$type'
   end
 
   def rule

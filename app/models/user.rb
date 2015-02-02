@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
+  def tokens
+    Token.for_user self
+  end
+
   def ensure_authentication_token
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token

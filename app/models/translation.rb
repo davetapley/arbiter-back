@@ -1,4 +1,6 @@
 class Translation < ActiveRecord::Base
+  belongs_to :token, primary_key: :token
+
   self.primary_keys = :token, :priority
 
   def self.for_token(token, request)

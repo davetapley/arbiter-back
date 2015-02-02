@@ -6,7 +6,7 @@ class TokensController < ApplicationController
   end
 
   def show
-    render json: Token.new(params[:id])
+    render json: Token.find(params[:id])
   end
 
   def update

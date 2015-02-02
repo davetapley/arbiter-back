@@ -4,7 +4,10 @@ class Translation < ActiveRecord::Base
   def self.for_token(token, request)
     translations = where(token: token).order(:priority)
     translations.each do |t|
-      return t.target if t.rule.active? request
+      if t.rule.active? request
+        t.followed!
+        return t.target
+      end
     end
 
     nil
@@ -24,5 +27,12 @@ class Translation < ActiveRecord::Base
 
   def rule
     "RuleType::#{ rule_type }".constantize.new rule_config
+  end
+
+  def followed!
+    if rule.respond_to? :followed
+      new_rule_config = rule.followed self
+      update_attribute :rule, new_rule_config.merge('$type' => rule_type)
+    end
   end
 end

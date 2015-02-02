@@ -12,7 +12,6 @@ class TokensController < ApplicationController
   def update
     params[:token][:translations].each_with_index do |translation_params, index|
       translation_params = translation_params.to_hash
-      translation_params.delete('active')
 
       translation = Translation.find_or_initialize_by token: params[:id], priority: index
       translation.update_attributes! translation_params.merge(priority: index)

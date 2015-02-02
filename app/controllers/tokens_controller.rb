@@ -1,4 +1,6 @@
 class TokensController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     render json: Token.all
   end

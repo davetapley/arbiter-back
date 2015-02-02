@@ -6,6 +6,8 @@ gem 'rails-api'
 
 gem 'active_model_serializers', '~> 0.8.0'
 
+gem "browser"
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

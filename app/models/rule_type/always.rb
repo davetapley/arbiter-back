@@ -3,7 +3,7 @@ module RuleType
     def initialize(_config)
     end
 
-    def active?
+    def active?(_request)
       true
     end
   end

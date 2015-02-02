@@ -1,10 +1,10 @@
 class Translation < ActiveRecord::Base
   self.primary_keys = :token, :priority
 
-  def self.for_token(token)
+  def self.for_token(token, request)
     translations = where(token: token).order(:priority)
     translations.each do |t|
-      return t.target if t.rule.active?
+      return t.target if t.rule.active? request
     end
 
     nil

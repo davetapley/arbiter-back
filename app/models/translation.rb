@@ -3,18 +3,6 @@ class Translation < ActiveRecord::Base
 
   self.primary_keys = :token_id, :priority
 
-  def self.for_token(token, request)
-    translations = where(token: token).order(:priority)
-    translations.each do |t|
-      if t.rule.active? request
-        t.followed!
-        return t.target
-      end
-    end
-
-    nil
-  end
-
   def rule_json
     read_attribute :rule
   end

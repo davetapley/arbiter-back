@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get ':id', to: 'translations#resolve'
+  get ':id', to: 'tokens#resolve'
 end

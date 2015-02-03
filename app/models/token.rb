@@ -5,5 +5,5 @@ class Token < ActiveRecord::Base
 
   has_and_belongs_to_many :users
 
-  has_many :translations, foreign_key: :token
+  has_many :translations, foreign_key: :token_id
 end

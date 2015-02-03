@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202231624) do
+ActiveRecord::Schema.define(version: 20150203172805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150202231624) do
   add_index "tokens_users", ["user_id"], name: "index_tokens_users_on_user_id", using: :btree
 
   create_table "translations", id: false, force: true do |t|
-    t.string   "token",      null: false
+    t.string   "token_id",   null: false
     t.integer  "priority",   null: false
     t.json     "rule",       null: false
     t.string   "target",     null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150202231624) do
     t.datetime "updated_at"
   end
 
-  add_index "translations", ["token", "priority"], name: "index_translations_on_token_and_priority", unique: true, using: :btree
+  add_index "translations", ["token_id", "priority"], name: "index_translations_on_token_id_and_priority", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

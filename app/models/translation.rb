@@ -1,7 +1,7 @@
 class Translation < ActiveRecord::Base
-  belongs_to :token, primary_key: :token
+  belongs_to :token, primary_key: :token_id
 
-  self.primary_keys = :token, :priority
+  self.primary_keys = :token_id, :priority
 
   def self.for_token(token, request)
     translations = where(token: token).order(:priority)

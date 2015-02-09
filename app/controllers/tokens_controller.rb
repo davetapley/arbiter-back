@@ -9,6 +9,17 @@ class TokensController < ApplicationController
     render json: current_user.tokens.find(params[:id])
   end
 
+  def create
+    token_id = params[:token][:id]
+    head 409 and return if Token.exists? token_id
+
+    current_user.ownerships.create token_id: token_id
+
+    params[:token][:translations].each_with_index do |translation_params, index|
+      Translation.create translation_params.to_hash.merge(token_id: token_id, priority: index)
+    end
+  end
+
   def update
     token = current_user.tokens.find params[:id]
 

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  resources :tokens, only: [:index, :show, :update]
+  resources :tokens, only: [:index, :show, :create, :update]
 
   resources :translations, only: [] do
     member do

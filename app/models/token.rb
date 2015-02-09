@@ -3,7 +3,8 @@ class Token < ActiveRecord::Base
 
   self.primary_key = :id
 
-  has_and_belongs_to_many :users
+  has_many :ownerships
+  has_many :users, through: :ownerships
 
   has_many :translations, foreign_key: :token_id
 

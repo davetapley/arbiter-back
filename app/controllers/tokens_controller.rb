@@ -15,17 +15,17 @@ class TokensController < ApplicationController
 
     current_user.ownerships.create token_id: token_id
 
-    params[:token][:translations].each_with_index do |translation_params, index|
-      Translation.create translation_params.to_hash.merge(token_id: token_id, priority: index)
+    token_params[:translations].each_with_index do |translation_params, index|
+      Translation.create translation_params.merge(token_id: token_id, priority: index)
     end
   end
 
   def update
     token = current_user.tokens.find params[:id]
 
-    params[:token][:translations].each_with_index do |translation_params, index|
+    token_params[:translations].each_with_index do |translation_params, index|
       translation = token.translations.find_or_initialize_by priority: index
-      translation.update_attributes! translation_params.to_hash.merge(priority: index)
+      translation.update_attributes! translation_params.merge(priority: index)
     end
   end
 
@@ -40,8 +40,6 @@ class TokensController < ApplicationController
   private
 
   def token_params
-    params.require(:token).permit.tap do |white_listed|
-      white_listed[:translations] = params[:token][:translations]
-    end
+    params.require(:token).permit!
   end
 end

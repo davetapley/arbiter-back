@@ -1,5 +1,6 @@
 class TokensController < ApplicationController
   before_action :authenticate_user!, except: [:resolve]
+  before_action :ensure_always_rule, only: [:create, :update]
 
   def index
     render json: current_user.tokens
@@ -41,5 +42,13 @@ class TokensController < ApplicationController
 
   def token_params
     params.require(:token).permit!
+  end
+
+  def ensure_always_rule
+    last_translation = token_params[:translations].last
+    unless last_translation[:rule][:$type] == 'Always'
+      json = { error: 'Lowest priority translation must have an always rule' }
+      render json: json, status: :unprocessable_entity
+    end
   end
 end

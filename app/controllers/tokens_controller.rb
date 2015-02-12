@@ -31,11 +31,13 @@ class TokensController < ApplicationController
   end
 
   def resolve
+    host = request.env["HTTP_HOST"]
+
     token = Token.find params[:id]
     target = token.first_active_translation request
     fail 'no active target' if target.nil?
 
-    redirect_to "http://#{ target }"
+    redirect_to "http://#{ target }?from_host=#{ host }"
   end
 
   private

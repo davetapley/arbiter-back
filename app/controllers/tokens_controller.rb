@@ -1,5 +1,5 @@
 class TokensController < ApplicationController
-  before_action :authenticate_user!, except: [:resolve]
+  before_action :authenticate_user!, except: [:resolve, :none]
   before_action :ensure_always_rule, only: [:create, :update]
 
   def index
@@ -38,6 +38,10 @@ class TokensController < ApplicationController
     fail 'no active target' if target.nil?
 
     redirect_to "http://#{ target }?from_host=#{ host }"
+  end
+
+  def none
+    redirect_to "//#{ Rails.application.secrets.front_end_url }"
   end
 
   private

@@ -6,6 +6,7 @@ gem 'active_model_serializers', '~> 0.8.0'
 gem "rack-cors", require: "rack/cors"
 
 gem 'rails_12factor', group: :production
+gem 'newrelic_rpm'
 
 gem 'pg'
 gem 'composite_primary_keys', '~> 7.0.12'

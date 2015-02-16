@@ -35,7 +35,7 @@ class TokensController < ApplicationController
   def resolve
     host = request.env["HTTP_HOST"]
 
-    token = Token.find params[:id]
+    token = Token.find_by! domain_id: host, path_id: params[:id]
     target = token.first_active_translation request
     fail 'no active target' if target.nil?
 

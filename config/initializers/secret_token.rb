@@ -16,4 +16,3 @@
 # Using secret_token for rails3 compatibility. Change to secret_key_base
 # to avoid deprecation warning.
 # Can be safely removed in a rails3 api-only application.
-Arbiter::Application.config.secret_token = 'da1e783bf06c139e723dc540933e5b3f95f2ae681cd933778e040aeb697bf8e1ba0efdbc2eee311ab9ef7016770756a85f5a36cb9a8f4dd08cc62bc8babcc970'

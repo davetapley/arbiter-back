@@ -11,28 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209232801) do
+ActiveRecord::Schema.define(version: 20150216061909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ownerships", force: true do |t|
+  create_table "ownerships", id: false, force: true do |t|
     t.integer "user_id"
-    t.string  "token_id"
+    t.string  "path_id"
+    t.string  "domain_id"
   end
 
   add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id", using: :btree
 
   create_table "translations", id: false, force: true do |t|
-    t.string   "token_id",   null: false
+    t.string   "path_id",    null: false
     t.integer  "priority",   null: false
     t.json     "rule",       null: false
     t.string   "target",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "domain_id"
   end
 
-  add_index "translations", ["token_id", "priority"], name: "index_translations_on_token_id_and_priority", unique: true, using: :btree
+  add_index "translations", ["path_id", "priority"], name: "index_translations_on_path_id_and_priority", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

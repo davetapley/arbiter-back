@@ -11,13 +11,15 @@ class TokensController < ApplicationController
   end
 
   def create
-    token_id = params[:token][:id]
-    head 409 and return if Token.exists? token_id
+    partition = params[:token][:id].rpartition ','
+    domain_id = partition.first
+    path_id = partition.last
+    head 409 and return if Token.find_by(domain_id: domain_id, path_id: path_id).present?
 
-    current_user.ownerships.create token_id: token_id
+    current_user.ownerships.create domain_id: domain_id, path_id: path_id
 
     token_params[:translations].each_with_index do |translation_params, index|
-      Translation.create translation_params.merge(token_id: token_id, priority: index)
+      Translation.create translation_params.merge(domain_id: domain_id, path_id: path_id, priority: index)
     end
   end
 

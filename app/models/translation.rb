@@ -1,7 +1,7 @@
 class Translation < ActiveRecord::Base
-  belongs_to :token, primary_key: :token_id
+  belongs_to :token, primary_key: :path_id
 
-  self.primary_keys = :token_id, :priority
+  self.primary_keys = :domain_id, :path_id, :priority
 
   def rule_json
     read_attribute :rule

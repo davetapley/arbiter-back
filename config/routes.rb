@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :tokens, only: [:index, :show, :create, :update]
 
+  resources :domains, only: [:index]
+
   resources :translations, only: [] do
     member do
       get :resolve

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  resources :tokens, only: [:index, :show, :create, :update]
+  resources :tokens, id: /[A-Za-z0-9\.%]+/, only: [:index, :show, :create, :update]
 
   resources :domains, only: [:index]
 

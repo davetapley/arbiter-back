@@ -7,7 +7,8 @@ class TokensController < ApplicationController
   end
 
   def show
-    render json: current_user.tokens.find(params[:id])
+    domain_id, _comma, path_id = params[:id].rpartition ','
+    render json: current_user.tokens.find_by!(domain_id: domain_id, path_id: path_id)
   end
 
   def create

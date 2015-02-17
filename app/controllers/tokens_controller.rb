@@ -11,6 +11,17 @@ class TokensController < ApplicationController
     render json: current_user.tokens.find_by!(domain_id: domain_id, path_id: path_id)
   end
 
+  def available
+    domain_id, _comma, path_id = params[:id].rpartition ','
+    token = Token.find_by domain_id: domain_id, path_id: path_id
+    if token.present?
+      user_owns = token.users.include? current_user
+      render json: { available: false, user_owns: user_owns }
+    else
+      render json: { available: true }
+    end
+  end
+
   def create
     partition = params[:token][:id].rpartition ','
     domain_id = partition.first
@@ -34,13 +45,13 @@ class TokensController < ApplicationController
   end
 
   def resolve
-    host = params[:host] || request.env["HTTP_HOST"]
+    host = request.env["HTTP_HOST"]
 
     token = Token.find_by! domain_id: host, path_id: params[:id]
     target = token.first_active_translation request
     fail 'no active target' if target.nil?
 
-    params[:host] ? head(:ok) : redirect_to("http://#{ target }?from_host=#{ host }")
+    redirect_to "http://#{ target }?from_host=#{ host }"
   end
 
   def none

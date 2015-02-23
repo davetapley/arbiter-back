@@ -13,6 +13,7 @@ gem 'composite_primary_keys', '~> 7.0.12'
 
 gem 'browser'
 gem 'devise'
+gem 'platform-api'
 
 gem 'factory_girl_rails'
 

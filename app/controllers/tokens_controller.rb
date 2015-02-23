@@ -29,6 +29,8 @@ class TokensController < ApplicationController
     head 409 and return if Token.find_by(domain_id: domain_id, path_id: path_id).present?
 
     current_user.ownerships.create domain_id: domain_id, path_id: path_id
+    domain = Domain.new domain_id
+    domain.save
 
     token_params[:translations].each_with_index do |translation_params, index|
       Translation.create translation_params.merge(domain_id: domain_id, path_id: path_id, priority: index)

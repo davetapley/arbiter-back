@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222050658) do
+ActiveRecord::Schema.define(version: 20150223050025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150222050658) do
     t.string  "domain_id"
   end
 
+  add_index "ownerships", ["user_id", "domain_id", "path_id"], name: "index_ownerships_on_user_id_and_domain_id_and_path_id", unique: true, using: :btree
   add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id", using: :btree
 
   create_table "translations", id: false, force: true do |t|

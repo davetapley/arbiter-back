@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :ownerships
   has_many :tokens, through: :ownerships
+  has_many :translations, through: :tokens
 
   before_save :ensure_authentication_token
 

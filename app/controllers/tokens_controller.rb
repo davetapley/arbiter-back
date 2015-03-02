@@ -18,7 +18,8 @@ class TokensController < ApplicationController
       user_owns = token.users.include? current_user
       render json: { available: false, user_owns: user_owns }
     else
-      render json: { available: true }
+      domain = Domain.new domain_id
+      render json: { available: domain.path_available(path_id) }
     end
   end
 

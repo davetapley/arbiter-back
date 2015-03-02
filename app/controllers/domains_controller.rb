@@ -2,7 +2,7 @@ class DomainsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    default = [request.env["HTTP_HOST"]]
+    default = Domain.default
     user = current_user.ownerships.pluck('distinct domain_id')
 
     domains =

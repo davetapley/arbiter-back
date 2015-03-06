@@ -6,7 +6,7 @@ class Domain
   end
 
   def self.default_blacklist
-    [//, /users/, /tokens/, /domains/, /translations/]
+    [/^$/, /users/, /tokens/, /domains/, /translations/]
   end
 
   def initialize(domain)

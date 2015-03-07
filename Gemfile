@@ -23,6 +23,7 @@ group :development do
   gem 'byebug'
   gem 'guard-rubocop'
   gem 'spring'
+  gem "figaro"
 end
 
 ruby '2.1.4'

@@ -1,0 +1,2 @@
+DEFAULT_DOMAINS: localhost:3200
+FRONT_END_URL: localhost:4200

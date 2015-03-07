@@ -7,6 +7,7 @@ gem "rack-cors", require: "rack/cors"
 
 gem 'rails_12factor', group: :production
 gem 'newrelic_rpm'
+gem 'figaro'
 
 gem 'pg'
 gem 'composite_primary_keys', '~> 7.0.12'
@@ -23,7 +24,6 @@ group :development do
   gem 'byebug'
   gem 'guard-rubocop'
   gem 'spring'
-  gem "figaro"
 end
 
 ruby '2.1.4'

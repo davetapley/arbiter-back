@@ -51,7 +51,7 @@ class TokensController < ApplicationController
     domain_id = request.env["HTTP_HOST"]
     path_id = params[:id] || ''
 
-    if Domain.default.include? domain_id && path_id.blank?
+    if Domain.default.include?(domain_id) && path_id.blank?
       redirect_to "//#{ Rails.application.secrets.front_end_url }"
     else
       token = Token.find_by! domain_id: domain_id, path_id: path_id

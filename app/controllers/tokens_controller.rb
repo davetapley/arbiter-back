@@ -48,17 +48,17 @@ class TokensController < ApplicationController
   end
 
   def resolve
-    host = request.env["HTTP_HOST"]
+    domain_id = request.env["HTTP_HOST"]
+    path_id = params[:id] || ''
 
-    token = Token.find_by! domain_id: host, path_id: params[:id]
-    target = token.first_active_translation request
-    fail 'no active target' if target.nil?
-
-    redirect_to "http://#{ target }"
-  end
-
-  def none
-    redirect_to "//#{ Rails.application.secrets.front_end_url }"
+    if Domain.default.include? domain_id && path_id.blank?
+      redirect_to "//#{ Rails.application.secrets.front_end_url }"
+    else
+      token = Token.find_by! domain_id: domain_id, path_id: path_id
+      target = token.first_active_translation request
+      fail 'no active target' if target.nil?
+      redirect_to "http://#{ target }"
+    end
   end
 
   private

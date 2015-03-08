@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   end
 
   get ':id', to: 'tokens#resolve'
-  root to: 'tokens#none'
+  root to: 'tokens#resolve'
 end

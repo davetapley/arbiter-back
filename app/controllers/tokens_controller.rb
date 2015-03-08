@@ -54,7 +54,7 @@ class TokensController < ApplicationController
     target = token.first_active_translation request
     fail 'no active target' if target.nil?
 
-    redirect_to "http://#{ target }?from_host=#{ host }"
+    redirect_to "http://#{ target }"
   end
 
   def none

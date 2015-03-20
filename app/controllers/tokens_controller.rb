@@ -29,7 +29,10 @@ class TokensController < ApplicationController
     path_id = partition.last
     head 409 and return if Token.find_by(domain_id: domain_id, path_id: path_id).present?
 
-    current_user.ownerships.create domain_id: domain_id, path_id: path_id
+    unless Domain.default? domain_id
+      current_user.ownerships.create domain_id: domain_id, path_id: path_id
+    end
+
     domain = Domain.new domain_id
     domain.save
 

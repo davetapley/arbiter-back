@@ -42,7 +42,11 @@ class TokensController < ApplicationController
   end
 
   def update
-    token = current_user.tokens.find params[:id]
+    partition = params[:id].rpartition ','
+    domain_id = partition.first
+    path_id = partition.last
+
+    token = current_user.tokens.find_by domain_id: domain_id, path_id: path_id
 
     token_params[:translations].each_with_index do |translation_params, index|
       translation = token.translations.find_or_initialize_by priority: index

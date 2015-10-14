@@ -5,6 +5,10 @@ class Domain
     DEFAULT_DOMAINS
   end
 
+  def self.is_default?(domain)
+    default.include? domain
+  end
+
   def self.default_blacklist
     [/^$/, /users/, /tokens/, /domains/, /translations/]
   end
